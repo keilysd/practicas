@@ -153,3 +153,50 @@ const student3: Student = {
 console.log(`${student1.studentName}'s grade: ${calculateGrade(student1)}`);
 console.log(`${student2.studentName}'s grade: ${calculateGrade(student2)}`);
 console.log(`${student3.studentName}'s grade: ${calculateGrade(student3)}`);
+
+interface ClothingItem{
+    id: number,
+    name: string,
+    price: number,
+    quantity: number,
+    sizes: string[]
+
+}
+
+const tShirt: ClothingItem ={
+    id:1,
+    name: "Classic Cotton",
+    price: 19.00,
+    quantity: 20,
+    sizes: ["S", "M","L","XL"]
+}
+
+console.log("Clothing Item:", tShirt);
+console.log("Item Name:", tShirt.name);
+console.log("Available Sizes:", tShirt.sizes.join(", "));
+
+function calculateAveragePrice(items: ClothingItem[]):number{
+    if(items.length===0){
+        return 0;
+    }
+    const totalPrice=items.reduce((sum,item) => sum + item.price,0);
+    return totalPrice / items.length;
+}
+
+function countItemsInventory (items: ClothingItem[]):number{
+    return items.reduce((total,item) => total + item.quantity,0)
+}
+
+const inventoryItems: ClothingItem[]=[
+    { id: 1, name: "Classic T-Shirt", price: 19.99, quantity: 100, sizes: ["S", "M", "L", "XL"] },
+    { id: 2, name: "Denim Jeans", price: 49.99, quantity: 50, sizes: ["30", "32", "34", "36"] },
+    { id: 3, name: "Hoodie", price: 39.99, quantity: 75, sizes: ["M", "L", "XL"] },
+    { id: 4, name: "Socks Pack", price: 9.99, quantity: 200, sizes: ["One Size"] }
+];
+
+console.log("Average Price:", calculateAveragePrice(inventoryItems).toFixed(2));
+console.log("Total Items in Inventory:", countItemsInventory(inventoryItems));
+
+// Prueba con inventario vacío
+console.log("Average Price (Empty Inventory):", calculateAveragePrice([]).toFixed(2));
+console.log("Total Items (Empty Inventory):", countItemsInventory([]));
